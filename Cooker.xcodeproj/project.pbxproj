@@ -104,11 +104,11 @@
 				AF8834C5220ECFD700987430 /* View */,
 				AF8834C4220ECFCA00987430 /* Service */,
 				AF8834C3220ECFC000987430 /* Model */,
+				AFFCBD34220EE2C100D1DE2C /* Extensions.swift */,
 				AF8834B8220ECEAF00987430 /* Assets.xcassets */,
 				AF8834BA220ECEAF00987430 /* LaunchScreen.storyboard */,
 				AF8834BD220ECEAF00987430 /* Info.plist */,
 				AFFCBD27220ED21500D1DE2C /* GoogleService-Info.plist */,
-				AFFCBD34220EE2C100D1DE2C /* Extensions.swift */,
 			);
 			path = Cooker;
 			sourceTree = "<group>";

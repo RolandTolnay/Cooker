@@ -29,6 +29,11 @@ class RecipeViewController: UIViewController {
     setupTableView()
     recipe.map { setup(withRecipe: $0) }
     updateDoneButtonEnabled()
+
+    if !isPresentedModally {
+      navigationItem.leftBarButtonItem = nil
+      navigationItem.hidesBackButton = false
+    }
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -69,13 +74,12 @@ class RecipeViewController: UIViewController {
       }
     })
 
-    navigationController?.popViewController(animated: true)
+    dismissOrPop()
   }
 
-  @IBAction func onAddIngredientTapped(_ sender: Any) {
+  @IBAction private func onCancelTapped(_ sender: Any) {
 
-    let ingredientViewController = IngredientViewController.instantiate()
-    navigationController?.pushViewController(ingredientViewController, animated: true)
+    dismissOrPop()
   }
 
   @IBAction private func onRecipeNameChanged(_ sender: Any) {

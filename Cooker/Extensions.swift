@@ -138,6 +138,20 @@ extension UIViewController {
                                   handler: handler))
     self.present(alert, animated: true)
   }
+
+  var isPresentedModally: Bool {
+
+    return presentingViewController is UITabBarController
+  }
+
+  func dismissOrPop() {
+
+    if isPresentedModally {
+      dismiss(animated: true, completion: nil)
+    } else {
+      navigationController?.popViewController(animated: true)
+    }
+  }
 }
 
 
