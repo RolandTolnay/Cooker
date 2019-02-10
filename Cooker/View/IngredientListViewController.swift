@@ -10,11 +10,12 @@ import UIKit
 
 class IngredientListViewController: UIViewController {
 
-  private let ingredients = [
-    Ingredient(name: "sugar", amount: .mg(amount: 500)),
-    Ingredient(name: "flour", amount: .mg(amount: 300)),
-    Ingredient(name: "milk", amount: .ml(amount: 500))
-  ]
+  private var ingredients = [Ingredient]() {
+    didSet {
+      ingredients.sort { $0.name < $1.name }
+      ingredientsTableView.reloadData()
+    }
+  }
 
   @IBOutlet weak var ingredientsTableView: UITableView!
 
@@ -22,6 +23,18 @@ class IngredientListViewController: UIViewController {
     super.viewDidLoad()
 
     setupTableView()
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+
+    Service.db?.ingredients(completion: { (ingredients, error) in
+
+      if let error = error {
+        print("Error fetching ingredients from DB: \(error.localizedDescription)")
+      }
+      self.ingredients = ingredients
+    })
   }
 }
 

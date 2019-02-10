@@ -13,18 +13,29 @@ class RecipeListViewController: UIViewController {
 
   @IBOutlet private weak var recipesTableView: UITableView!
 
-  private let recipes = [
-    Recipe(name: "Tuna salad", ingredients: [Ingredient(name: "sugar")]),
-    Recipe(name: "Quinoa salad"),
-    Recipe(name: "Chicken pasta"),
-    Recipe(name: "Very long recipe name to test automatic cell resizing dimensions")
-  ]
+  private var recipes = [Recipe]() {
+    didSet {
+      recipesTableView.reloadData()
+    }
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     authenticate()
     setupTableView()
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+
+    Service.db?.recipes(completion: { (recipes, error) in
+
+      if let error = error {
+        print("Error fetching recipes from DB: \(error.localizedDescription)")
+      }
+      self.recipes = recipes
+    })
   }
 }
 
@@ -34,10 +45,21 @@ extension RecipeListViewController {
 
     Auth.auth().signInAnonymously { (result, error) in
 
-      if let error = error {
-        print("Unable to sign in with Firebase: \(error.localizedDescription)")
-      } else {
+      if let result = result {
+
+        let db = FirestoreDatabase(userId: result.user.uid)
+        Service.db = db
+        db.recipes(completion: { (recipes, error) in
+
+          if let error = error {
+            print("Error fetching recipes from DB: \(error.localizedDescription)")
+          }
+          self.recipes = recipes
+        })
+
         print("Succesfully signed in with Firebase.")
+      } else {
+        print("Unable to sign in with Firebase: \(error?.localizedDescription ?? "unknown error")")
       }
     }
   }

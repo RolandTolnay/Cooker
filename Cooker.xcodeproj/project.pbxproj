@@ -22,6 +22,11 @@
 		AFFCBD33220EE05600D1DE2C /* IngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCBD32220EE05600D1DE2C /* IngredientViewController.swift */; };
 		AFFCBD35220EE2C100D1DE2C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCBD34220EE2C100D1DE2C /* Extensions.swift */; };
 		AFFCBD38221018CC00D1DE2C /* IngredientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFFCBD37221018CC00D1DE2C /* IngredientCell.xib */; };
+		AFFCBD3A221053F800D1DE2C /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCBD39221053F800D1DE2C /* Database.swift */; };
+		AFFCBD3C2210542400D1DE2C /* CKError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCBD3B2210542400D1DE2C /* CKError.swift */; };
+		AFFCBD3E221054B100D1DE2C /* FirestoreDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCBD3D221054B100D1DE2C /* FirestoreDatabase.swift */; };
+		AFFCBD402210585400D1DE2C /* Amount.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCBD3F2210585400D1DE2C /* Amount.swift */; };
+		AFFCBD4222105E7600D1DE2C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCBD4122105E7500D1DE2C /* Service.swift */; };
 		B3F736F4002F967909D28A6B /* Pods_Cooker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6614DC794C83AADA87E02A11 /* Pods_Cooker.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +50,11 @@
 		AFFCBD32220EE05600D1DE2C /* IngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientViewController.swift; sourceTree = "<group>"; };
 		AFFCBD34220EE2C100D1DE2C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		AFFCBD37221018CC00D1DE2C /* IngredientCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientCell.xib; sourceTree = "<group>"; };
+		AFFCBD39221053F800D1DE2C /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		AFFCBD3B2210542400D1DE2C /* CKError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKError.swift; sourceTree = "<group>"; };
+		AFFCBD3D221054B100D1DE2C /* FirestoreDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreDatabase.swift; sourceTree = "<group>"; };
+		AFFCBD3F2210585400D1DE2C /* Amount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amount.swift; sourceTree = "<group>"; };
+		AFFCBD4122105E7500D1DE2C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		F81C776FFFE92282608CAFAF /* Pods-Cooker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cooker/Pods-Cooker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +118,7 @@
 			children = (
 				AF8834C6220ED00500987430 /* Recipe.swift */,
 				AF8834C8220ED01000987430 /* Ingredient.swift */,
+				AFFCBD3F2210585400D1DE2C /* Amount.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,6 +126,10 @@
 		AF8834C4220ECFCA00987430 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				AFFCBD3B2210542400D1DE2C /* CKError.swift */,
+				AFFCBD39221053F800D1DE2C /* Database.swift */,
+				AFFCBD3D221054B100D1DE2C /* FirestoreDatabase.swift */,
+				AFFCBD4122105E7500D1DE2C /* Service.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -162,6 +177,7 @@
 				AF8834A9220ECEAE00987430 /* Frameworks */,
 				AF8834AA220ECEAE00987430 /* Resources */,
 				7E8C8496F2D8CE04B0002A4E /* [CP] Embed Pods Frameworks */,
+				878C779C375E6C2AA30C6BCB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -228,15 +244,23 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Cooker/Pods-Cooker-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -263,6 +287,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		878C779C375E6C2AA30C6BCB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Cooker/Pods-Cooker-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates-Firestore.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Firestore.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cooker/Pods-Cooker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -271,8 +313,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFFCBD30220EE02D00D1DE2C /* RecipeViewController.swift in Sources */,
+				AFFCBD3E221054B100D1DE2C /* FirestoreDatabase.swift in Sources */,
+				AFFCBD4222105E7600D1DE2C /* Service.swift in Sources */,
+				AFFCBD3A221053F800D1DE2C /* Database.swift in Sources */,
+				AFFCBD402210585400D1DE2C /* Amount.swift in Sources */,
 				AFFCBD33220EE05600D1DE2C /* IngredientViewController.swift in Sources */,
 				AF8834B4220ECEAE00987430 /* IngredientListViewController.swift in Sources */,
+				AFFCBD3C2210542400D1DE2C /* CKError.swift in Sources */,
 				AF8834B0220ECEAE00987430 /* AppDelegate.swift in Sources */,
 				AF8834C9220ED01000987430 /* Ingredient.swift in Sources */,
 				AFFCBD2E220EE00B00D1DE2C /* RecipeCell.swift in Sources */,

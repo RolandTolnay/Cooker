@@ -12,11 +12,12 @@ class RecipeViewController: UIViewController {
 
   var recipe: Recipe?
 
-  private let ingredients = [
-    Ingredient(name: "sugar"),
-    Ingredient(name: "flour"),
-    Ingredient(name: "milk")
-  ]
+  private var ingredients = [Ingredient]() {
+    didSet {
+      ingredients.sort { $0.name < $1.name }
+      ingredientsTableView.reloadData()
+    }
+  }
 
   @IBOutlet private weak var nameTextField: UITextField!
   @IBOutlet private weak var ingredientsTableView: UITableView!
@@ -30,6 +31,23 @@ class RecipeViewController: UIViewController {
     updateDoneButtonEnabled()
   }
 
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+
+    Service.db?.ingredients(completion: { (ingredients, error) in
+
+      if let error = error {
+        print("Error fetching ingredients from DB: \(error.localizedDescription)")
+      }
+      ingredients.forEach {
+        if !self.ingredients.contains($0) {
+          self.ingredients.append($0)
+        }
+      }
+      self.recipe.map { self.pick(ingredients: $0.ingredients) }
+    })
+  }
+
   @IBAction private func onDoneTapped(_ sender: Any) {
 
     guard let selectedRows = ingredientsTableView.indexPathsForSelectedRows,
@@ -38,13 +56,22 @@ class RecipeViewController: UIViewController {
       else { return }
 
     let selectedIngredients = selectedRows.map { ingredients[$0.row] }
-    recipe = Recipe(name: recipeName, ingredients: selectedIngredients)
+    let recipe = Recipe(id: self.recipe.map { $0.id },
+                        name: recipeName,
+                        ingredients: selectedIngredients)
 
-    print("Saving recipe: \(recipe?.description ?? "N/A")")
-    // Persist recipe to DB
+    Service.db?.save(recipe: recipe, completion: { (error) in
+
+      if let error = error {
+        print("Unable to save recipe with error: \(error.localizedDescription)")
+      } else {
+        print("Succesfully saved recipe: \(recipe)")
+      }
+    })
 
     navigationController?.popViewController(animated: true)
   }
+
   @IBAction func onAddIngredientTapped(_ sender: Any) {
 
     let ingredientViewController = IngredientViewController.instantiate()
@@ -74,18 +101,24 @@ extension RecipeViewController {
   private func setup(withRecipe recipe: Recipe) {
 
     nameTextField.text = recipe.name
-    recipe.ingredients.forEach {
-      if let index = ingredients.firstIndex(of: $0) {
-        let indexPath = IndexPath(row: index, section: 0)
-        ingredientsTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-      }
-    }
+    ingredients = recipe.ingredients
+    pick(ingredients: recipe.ingredients)
   }
 
   private func updateDoneButtonEnabled() {
 
     doneButton.isEnabled = ingredientsTableView.indexPathsForSelectedRows != nil
       && !(nameTextField.text ?? "").isEmpty
+  }
+
+  private func pick(ingredients: [Ingredient]) {
+
+    ingredients.forEach {
+      if let index = self.ingredients.firstIndex(of: $0) {
+        let indexPath = IndexPath(row: index, section: 0)
+        ingredientsTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+      }
+    }
   }
 }
 
@@ -102,6 +135,7 @@ extension RecipeViewController: UITableViewDataSource {
       else { return UITableViewCell() }
 
     cell.setup(withIngredient: ingredients[indexPath.row])
+    cell.amountHidden = true
     cell.selectionStyle = .none
 
     return cell

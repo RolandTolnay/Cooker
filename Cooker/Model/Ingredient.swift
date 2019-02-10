@@ -8,17 +8,17 @@
 
 import Foundation
 
-struct Ingredient {
+struct Ingredient: Hashable {
 
   let id: String
   var name: String
   var amount: Amount
 
-  init(id: String = "",
+  init(id: String? = nil,
        name: String,
        amount: Amount = .none) {
 
-    self.id = id
+    self.id = id ?? UUID().uuidString
     self.name = name
     self.amount = amount
   }
@@ -44,91 +44,30 @@ extension Ingredient: Equatable {
   }
 }
 
-enum Amount {
+extension Ingredient {
 
-  case piece(amount: Int)
-  case mg(amount: Int)
-  case ml(amount: Int)
-  case none
+  init(dictionary: [String: Any]) {
 
-  var title: String? {
+    let id = dictionary["id"] as? String ?? ""
+    let name = dictionary["name"] as? String ?? ""
+    assert(!name.isEmpty && !id.isEmpty)
 
-    switch self {
-    case .piece:
-      return "pieces"
-    case .mg:
-      return "mg"
-    case .ml:
-      return "ml"
-    default:
-      return nil
-    }
+    let amountValue = dictionary["amountValue"] as? Int ?? 0
+    let amountType = dictionary["amountType"] as? String ?? ""
+    let amount = Amount(type: amountType, amount: amountValue)
+
+    self.id = id
+    self.name = name
+    self.amount = amount
   }
 
-  var value: Int? {
+  var asDictionary: [String: Any] {
 
-    get {
-
-      switch self {
-      case .piece(let amount),
-           .mg(let amount),
-           .ml(let amount):
-        return amount
-      default:
-        return nil
-      }
-    }
-    set {
-
-      guard let value = newValue else { return }
-      switch self {
-      case .piece:
-        self = .piece(amount: value)
-      case .mg:
-        self = .mg(amount: value)
-      case .ml:
-        self = .ml(amount: value)
-      default:
-        assertionFailure("Attempting to set amount value for .none")
-        return
-      }
-    }
-  }
-
-  static var selectableCases: [Amount] {
-    return [.piece(amount: 0), .mg(amount: 0), .ml(amount: 0)]
-  }
-}
-
-extension Amount: Equatable {
-
-  static func == (lhs: Amount, rhs: Amount) -> Bool {
-
-    switch (lhs, rhs) {
-    case (.piece, .piece),
-         (.mg, .mg),
-         (.ml, .ml),
-         (.none, .none):
-      return true
-    default:
-      return false
-    }
-  }
-}
-
-extension Amount: CustomStringConvertible {
-
-  var description: String {
-
-    switch self {
-    case .piece(let amount):
-      return "\(amount) pieces"
-    case .mg(let amount):
-      return "\(amount) mg"
-    case .ml(let amount):
-      return "\(amount) ml"
-    default:
-      return ""
-    }
+    return [
+      "id": id,
+      "name": name,
+      "amountValue": amount.value ?? 0,
+      "amountType": amount.title ?? ""
+    ]
   }
 }
