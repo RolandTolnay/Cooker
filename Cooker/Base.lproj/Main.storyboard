@@ -205,8 +205,9 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oAr-OB-aiV">
-                                <rect key="frame" x="40" y="184" width="295" height="40"/>
+                                <rect key="frame" x="40" y="184" width="120" height="40"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="Bg3-Vz-Cte"/>
                                     <constraint firstAttribute="height" constant="40" id="nh9-fO-jIh"/>
                                 </constraints>
                                 <nil key="textColor"/>
@@ -218,17 +219,19 @@
                                 </connections>
                             </textField>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4H-xI-iuK">
-                                <rect key="frame" x="40" y="224" width="295" height="216"/>
+                                <rect key="frame" x="172" y="149" width="163" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="eEa-Y3-gJg"/>
+                                </constraints>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="GZV-D3-n6r" firstAttribute="trailing" secondItem="qUK-OK-gnH" secondAttribute="trailing" constant="40" id="6xO-Kw-D2U"/>
-                            <constraint firstItem="GZV-D3-n6r" firstAttribute="trailing" secondItem="oAr-OB-aiV" secondAttribute="trailing" constant="40" id="7Qy-xu-LIm"/>
                             <constraint firstItem="qUK-OK-gnH" firstAttribute="top" secondItem="GZV-D3-n6r" secondAttribute="top" constant="40" id="7vO-lX-TfN"/>
-                            <constraint firstItem="g4H-xI-iuK" firstAttribute="trailing" secondItem="oAr-OB-aiV" secondAttribute="trailing" id="8Np-jW-coj"/>
-                            <constraint firstItem="g4H-xI-iuK" firstAttribute="leading" secondItem="oAr-OB-aiV" secondAttribute="leading" id="Nvv-sK-MT0"/>
-                            <constraint firstItem="g4H-xI-iuK" firstAttribute="top" secondItem="oAr-OB-aiV" secondAttribute="bottom" id="i19-iz-UF8"/>
+                            <constraint firstItem="GZV-D3-n6r" firstAttribute="trailing" secondItem="g4H-xI-iuK" secondAttribute="trailing" constant="40" id="KUP-hV-8Qx"/>
+                            <constraint firstItem="g4H-xI-iuK" firstAttribute="leading" secondItem="oAr-OB-aiV" secondAttribute="trailing" constant="12" id="hAN-kg-gW6"/>
+                            <constraint firstItem="g4H-xI-iuK" firstAttribute="centerY" secondItem="oAr-OB-aiV" secondAttribute="centerY" id="iLO-MP-jmq"/>
                             <constraint firstItem="qUK-OK-gnH" firstAttribute="leading" secondItem="GZV-D3-n6r" secondAttribute="leading" constant="40" id="mTt-rW-TZ2"/>
                             <constraint firstItem="oAr-OB-aiV" firstAttribute="leading" secondItem="GZV-D3-n6r" secondAttribute="leading" constant="40" id="wfg-aa-4wH"/>
                             <constraint firstItem="oAr-OB-aiV" firstAttribute="top" secondItem="qUK-OK-gnH" secondAttribute="bottom" constant="40" id="xZu-H2-yB6"/>
@@ -256,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQo-ud-rSQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3092" y="445"/>
+            <point key="canvasLocation" x="3092" y="444.82758620689657"/>
         </scene>
         <!--Ingredient Stock-->
         <scene sceneID="wg7-f3-ORb">
