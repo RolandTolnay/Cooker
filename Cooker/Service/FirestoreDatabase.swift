@@ -66,4 +66,20 @@ class FirestoreDatabase: Database {
       completion(error.map { CKError.databaseError(details: $0.localizedDescription) })
     }
   }
+
+  func delete(recipe: Recipe, completion: @escaping (CKError?) -> Void) {
+
+    recipesRef.document(recipe.id).delete { (error) in
+
+      completion(error.map { CKError.databaseError(details: $0.localizedDescription) })
+    }
+  }
+
+  func delete(ingredient: Ingredient, completion: @escaping (CKError?) -> Void) {
+
+    ingredientsRef.document(ingredient.id).delete { (error) in
+
+      completion(error.map { CKError.databaseError(details: $0.localizedDescription) })
+    }
+  }
 }

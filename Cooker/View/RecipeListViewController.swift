@@ -103,4 +103,26 @@ extension RecipeListViewController: UITableViewDelegate {
 
     tableView.deselectRow(at: indexPath, animated: true)
   }
+
+  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+
+    return true
+  }
+
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+    if (editingStyle == .delete) {
+      
+      let recipe = recipes[indexPath.row]
+      Service.db?.delete(recipe: recipe, completion: { (error) in
+
+        if let error = error {
+          print("Failed deleting \(recipe) with error: \(error.localizedDescription)")
+        } else {
+          print("Succesfully deleted \(recipe).")
+        }
+      })
+      recipes = recipes.filter { $0.id != recipe.id }
+    }
+  }
 }

@@ -11,10 +11,10 @@ import Foundation
 protocol Database: class {
   
   func recipes(completion: @escaping ([Recipe], CKError?) -> Void)
-  
-  func ingredients(completion: @escaping ([Ingredient], CKError?) -> Void)
-  
   func save(recipe: Recipe, completion: @escaping (CKError?) -> Void)
+  func delete(recipe: Recipe, completion: @escaping (CKError?) -> Void)
   
   func save(ingredient: Ingredient, completion: @escaping (CKError?) -> Void)
+  func ingredients(completion: @escaping ([Ingredient], CKError?) -> Void)
+  func delete(ingredient: Ingredient, completion: @escaping (CKError?) -> Void)
 }

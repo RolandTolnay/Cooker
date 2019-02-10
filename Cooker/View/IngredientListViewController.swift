@@ -82,5 +82,27 @@ extension IngredientListViewController: UITableViewDelegate {
 
     tableView.deselectRow(at: indexPath, animated: true)
   }
+
+  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+
+    return true
+  }
+
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+    if (editingStyle == .delete) {
+
+      let ingredient = ingredients[indexPath.row]
+      Service.db?.delete(ingredient: ingredient, completion: { (error) in
+
+        if let error = error {
+          print("Failed deleting \(ingredient) with error: \(error.localizedDescription)")
+        } else {
+          print("Succesfully deleted \(ingredient).")
+        }
+      })
+      ingredients = ingredients.filter { $0.id != ingredient.id }
+    }
+  }
 }
 
