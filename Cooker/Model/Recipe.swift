@@ -12,9 +12,17 @@ import UIKit
 struct Recipe {
 
   let id: String
-  let name: String
-  let ingredients: [Ingredient]
+  var name: String
+  var ingredients: [Ingredient]
 
-  let url: URL?
-  let photo: UIImage?
+  var url: URL?
+  var photo: UIImage?
+}
+
+extension Recipe: CustomStringConvertible {
+
+  var description: String {
+
+    return "[Recipe: \(name). Ingredients: \(ingredients)]"
+  }
 }

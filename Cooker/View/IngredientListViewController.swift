@@ -1,5 +1,5 @@
 //
-//  IngredientsViewController.swift
+//  IngredientListViewController.swift
 //  Cooker
 //
 //  Created by Roland Tolnay on 09/02/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IngredientsViewController: UIViewController {
+class IngredientListViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
