@@ -56,6 +56,7 @@ class IngredientViewController: UIViewController {
   @IBAction private func onAmountChanged(_ sender: Any) {
 
     updatePickerViewHidden()
+    updateSaveButtonEnabled()
   }
 
   @IBAction func onIngredientNameReturn(_ sender: Any) {

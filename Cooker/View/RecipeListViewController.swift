@@ -85,7 +85,7 @@ extension RecipeListViewController {
 
   private func setupTableView() {
 
-    recipesTableView.estimatedRowHeight = 85
+    recipesTableView.estimatedRowHeight = 97
     recipesTableView.rowHeight = UITableView.automaticDimension
 
     recipesTableView.tableFooterView = UIView()

@@ -10,9 +10,22 @@ import UIKit
 
 class IngredientCell: UITableViewCell {
 
+  static var estimatedHeight: CGFloat = 93.0
+
   @IBOutlet private weak var ingredientNameLabel: UILabel!
   @IBOutlet private weak var amountLabel: UILabel!
   @IBOutlet private weak var amountLabelHeightConstraint: NSLayoutConstraint!
+
+  override func awakeFromNib() {
+    super.awakeFromNib()
+
+    addGradient(topColor: #colorLiteral(red: 0.0862745098, green: 0.6274509804, blue: 0.5215686275, alpha: 1), bottomColor: #colorLiteral(red: 0.1803921569, green: 0.8, blue: 0.4431372549, alpha: 1))
+    backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+    backgroundView?.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+    ingredientNameLabel.textColor = .white
+    amountLabel.textColor = .white
+    contentView.autoresizingMask = [ .flexibleHeight ]
+  }
 
   func setup(withIngredient ingredient: Ingredient) {
 

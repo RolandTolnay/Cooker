@@ -57,6 +57,16 @@ extension UITableViewCell {
 // MARK: - UIView
 extension UIView {
 
+  func addGradient(topColor: UIColor, bottomColor: UIColor) {
+
+    let gradientLayer = CAGradientLayer()
+    gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
+    gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+    gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+    gradientLayer.frame = self.bounds
+    self.layer.insertSublayer(gradientLayer, at: 0)
+  }
+
   @IBInspectable var shadowOffset: CGSize {
     get {
       return layer.shadowOffset
@@ -142,7 +152,9 @@ extension UIViewController {
 
   var isPresentedModally: Bool {
 
-    return presentingViewController is UITabBarController
+    return presentingViewController != nil ||
+      navigationController?.presentingViewController?.presentedViewController === navigationController ||
+      tabBarController?.presentingViewController is UITabBarController
   }
 
   func dismissOrPop() {

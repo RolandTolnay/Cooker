@@ -98,7 +98,7 @@ extension RecipeViewController {
 
   private func setupTableView() {
 
-    ingredientsTableView.estimatedRowHeight = 83
+    ingredientsTableView.estimatedRowHeight = IngredientCell.estimatedHeight
     ingredientsTableView.rowHeight = UITableView.automaticDimension
 
     ingredientsTableView.tableFooterView = UIView()
@@ -146,6 +146,7 @@ extension RecipeViewController: UITableViewDataSource {
 
     cell.setup(withIngredient: ingredients[indexPath.row])
     cell.amountHidden = true
+    cell.tintColor = .white
     cell.selectionStyle = .none
 
     return cell
