@@ -103,7 +103,7 @@ extension UIViewController {
 
   static var storyboard: UIStoryboard {
 
-    return UIStoryboard(name: "\(self)", bundle: Bundle(for: self))
+    return UIStoryboard(name: "Main", bundle: Bundle(for: self))
   }
 
   class func instantiate() -> Self {
@@ -113,7 +113,7 @@ extension UIViewController {
 
   private static func viewController<T: UIViewController>(viewControllerClass: T.Type) -> T {
 
-    guard let scene = storyboard.instantiateInitialViewController() as? T
+    guard let scene = storyboard.instantiateViewController(withIdentifier: "\(self)") as? T
       else { fatalError("Could not find storyboard named: \(self) with initial view controller set.") }
 
     return scene

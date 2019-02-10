@@ -10,15 +10,19 @@ import UIKit
 
 class RecipeCell: UITableViewCell {
 
-    override func awakeFromNib() {
+  @IBOutlet private weak var recipeNameLabel: UILabel!
+  @IBOutlet private weak var ingredientsLabel: UILabel!
+  @IBOutlet private weak var photoImageView: UIImageView!
+
+  override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+  func setup(with recipe: Recipe) {
 
-        // Configure the view for the selected state
-    }
-
+    recipeNameLabel.text = recipe.name
+    ingredientsLabel.text = "\(recipe.ingredients.count) ingredients"
+    photoImageView.image = recipe.photo
+  }
 }

@@ -13,6 +13,15 @@ struct Ingredient {
   let id: String
   let name: String
   let amount: Amount
+
+  init(id: String = "",
+       name: String,
+       amount: Amount = .none) {
+
+    self.id = id
+    self.name = name
+    self.amount = amount
+  }
 }
 
 extension Ingredient: CustomStringConvertible {
@@ -24,6 +33,14 @@ extension Ingredient: CustomStringConvertible {
     } else {
       return "[Ingredient: \(name). Amount: \(amount)]"
     }
+  }
+}
+
+extension Ingredient: Equatable {
+
+  static func == (lhs: Ingredient, rhs: Ingredient) -> Bool {
+
+    return lhs.name == rhs.name
   }
 }
 
