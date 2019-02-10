@@ -116,6 +116,7 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="onRecipeNameChanged:" destination="nLT-Yp-Jlf" eventType="editingChanged" id="XHn-qG-qBt"/>
+                                    <action selector="onRecipeNameReturn:" destination="nLT-Yp-Jlf" eventType="primaryActionTriggered" id="zZp-GG-gh0"/>
                                 </connections>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZWE-7M-0HJ">
@@ -197,9 +198,10 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="continue"/>
                                 <connections>
                                     <action selector="onIngredientNameChanged:" destination="M8V-ZU-c7F" eventType="editingChanged" id="vJD-Q0-ZvC"/>
+                                    <action selector="onIngredientNameReturn:" destination="M8V-ZU-c7F" eventType="primaryActionTriggered" id="KtG-Ck-8nh"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oAr-OB-aiV">
@@ -209,9 +211,10 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                 <connections>
                                     <action selector="onAmountChanged:" destination="M8V-ZU-c7F" eventType="editingChanged" id="qlK-BP-I1A"/>
+                                    <action selector="onAmountReturn:" destination="M8V-ZU-c7F" eventType="primaryActionTriggered" id="Qgc-21-4kX"/>
                                 </connections>
                             </textField>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4H-xI-iuK">
@@ -391,6 +394,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eTy-U8-tJ2"/>
+        <segue reference="Xik-UY-Vic"/>
     </inferredMetricsTieBreakers>
 </document>

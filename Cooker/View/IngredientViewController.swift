@@ -20,6 +20,8 @@ class IngredientViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    hideKeyboardWhenTappedArround()
+
     setupPickerView()
     ingredient.map { setup(withIngredient: $0) }
     updatePickerViewHidden()
@@ -31,32 +33,15 @@ class IngredientViewController: UIViewController {
     }
   }
 
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+
+    nameTextField.becomeFirstResponder()
+  }
+
   @IBAction private func onDoneTapped(_ sender: Any) {
 
-    guard let ingredientName = nameTextField.text,
-      !ingredientName.isEmpty
-      else { return }
-
-    var amount = Amount.none
-    if let amountValue = Int(amountTextField.text ?? "") {
-      amount = Amount.selectableCases[amountPickerView.selectedRow(inComponent: 0)]
-      amount.value = amountValue
-    }
-
-    let ingredient = Ingredient(id: self.ingredient.map { $0.id },
-                                name: ingredientName,
-                                amount: amount)
-
-    Service.db?.save(ingredient: ingredient, completion: { (error) in
-
-      if let error = error {
-        print("Unable to save ingredient with error: \(error.localizedDescription)")
-      } else {
-        print("Succesfully saved ingredient: \(ingredient)")
-      }
-    })
-
-    dismissOrPop()
+    saveIngredientAndDismiss()
   }
 
   @IBAction private func onCancelTapped(_ sender: Any) {
@@ -72,6 +57,16 @@ class IngredientViewController: UIViewController {
   @IBAction private func onAmountChanged(_ sender: Any) {
 
     updatePickerViewHidden()
+  }
+
+  @IBAction func onIngredientNameReturn(_ sender: Any) {
+
+    amountTextField.becomeFirstResponder()
+  }
+
+  @IBAction func onAmountReturn(_ sender: Any) {
+
+    saveIngredientAndDismiss()
   }
 }
 
@@ -104,6 +99,34 @@ extension IngredientViewController {
   private func updateDoneButtonEnabled() {
 
     doneButton.isEnabled = !(nameTextField.text ?? "").isEmpty
+  }
+
+  private func saveIngredientAndDismiss() {
+
+    guard let ingredientName = nameTextField.text,
+      !ingredientName.isEmpty
+      else { return }
+
+    var amount = Amount.none
+    if let amountValue = Int(amountTextField.text ?? "") {
+      amount = Amount.selectableCases[amountPickerView.selectedRow(inComponent: 0)]
+      amount.value = amountValue
+    }
+
+    let ingredient = Ingredient(id: self.ingredient.map { $0.id },
+                                name: ingredientName,
+                                amount: amount)
+
+    Service.db?.save(ingredient: ingredient, completion: { (error) in
+
+      if let error = error {
+        print("Unable to save ingredient with error: \(error.localizedDescription)")
+      } else {
+        print("Succesfully saved ingredient: \(ingredient)")
+      }
+    })
+
+    dismissOrPop()
   }
 }
 

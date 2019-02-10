@@ -26,6 +26,8 @@ class RecipeViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    hideKeyboardWhenTappedArround()
+
     setupTableView()
     recipe.map { setup(withRecipe: $0) }
     updateDoneButtonEnabled()
@@ -39,6 +41,7 @@ class RecipeViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
+    nameTextField.becomeFirstResponder()
     Service.db?.ingredients(completion: { (ingredients, error) in
 
       if let error = error {
@@ -85,6 +88,11 @@ class RecipeViewController: UIViewController {
   @IBAction private func onRecipeNameChanged(_ sender: Any) {
 
     updateDoneButtonEnabled()
+  }
+
+  @IBAction func onRecipeNameReturn(_ sender: Any) {
+
+    view.endEditing(true)
   }
 }
 
