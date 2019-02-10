@@ -321,7 +321,7 @@
         <scene sceneID="olj-uO-cg5">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qnt-s6-MzR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Recipes" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Recipes" image="pan-tabbar" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bXk-Uj-a1O">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -336,11 +336,11 @@
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
         </scene>
-        <!--Stock-->
+        <!--Ingredients-->
         <scene sceneID="mWD-j2-3b8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="miy-DE-sp3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Stock" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Ingredients" image="cart-tabbar" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="saY-88-UKi">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -393,8 +393,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="cart-tabbar" width="39.200000762939453" height="39.200000762939453"/>
+        <image name="pan-tabbar" width="24.5" height="24.5"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Xik-UY-Vic"/>

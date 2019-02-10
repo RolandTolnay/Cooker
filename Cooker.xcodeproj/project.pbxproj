@@ -27,6 +27,7 @@
 		AFFCBD3E221054B100D1DE2C /* FirestoreDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCBD3D221054B100D1DE2C /* FirestoreDatabase.swift */; };
 		AFFCBD402210585400D1DE2C /* Amount.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCBD3F2210585400D1DE2C /* Amount.swift */; };
 		AFFCBD4222105E7600D1DE2C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCBD4122105E7500D1DE2C /* Service.swift */; };
+		AFFCBD442210C64C00D1DE2C /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCBD432210C64C00D1DE2C /* GradientView.swift */; };
 		B3F736F4002F967909D28A6B /* Pods_Cooker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6614DC794C83AADA87E02A11 /* Pods_Cooker.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		AFFCBD3D221054B100D1DE2C /* FirestoreDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreDatabase.swift; sourceTree = "<group>"; };
 		AFFCBD3F2210585400D1DE2C /* Amount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amount.swift; sourceTree = "<group>"; };
 		AFFCBD4122105E7500D1DE2C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		AFFCBD432210C64C00D1DE2C /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		F81C776FFFE92282608CAFAF /* Pods-Cooker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cooker/Pods-Cooker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +144,7 @@
 				AFFCBD2F220EE02D00D1DE2C /* RecipeViewController.swift */,
 				AFFCBD32220EE05600D1DE2C /* IngredientViewController.swift */,
 				AFFCBD31220EE03300D1DE2C /* Cells */,
+				AFFCBD432210C64C00D1DE2C /* GradientView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				AFFCBD3A221053F800D1DE2C /* Database.swift in Sources */,
 				AFFCBD402210585400D1DE2C /* Amount.swift in Sources */,
 				AFFCBD33220EE05600D1DE2C /* IngredientViewController.swift in Sources */,
+				AFFCBD442210C64C00D1DE2C /* GradientView.swift in Sources */,
 				AF8834B4220ECEAE00987430 /* IngredientListViewController.swift in Sources */,
 				AFFCBD3C2210542400D1DE2C /* CKError.swift in Sources */,
 				AF8834B0220ECEAE00987430 /* AppDelegate.swift in Sources */,
