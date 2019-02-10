@@ -18,6 +18,11 @@ class RecipeListViewController: UIViewController {
       recipesTableView.reloadData()
     }
   }
+  private var ingredientStock = [Ingredient]() {
+    didSet {
+      recipesTableView.reloadData()
+    }
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -35,6 +40,13 @@ class RecipeListViewController: UIViewController {
         print("Error fetching recipes from DB: \(error.localizedDescription)")
       }
       self.recipes = recipes
+    })
+    Service.db?.ingredients(completion: { (ingredients, error) in
+
+      if let error = error {
+        print("Error fetching ingredients from DB: \(error.localizedDescription)")
+      }
+      self.ingredientStock = ingredients
     })
   }
 }
@@ -55,6 +67,13 @@ extension RecipeListViewController {
             print("Error fetching recipes from DB: \(error.localizedDescription)")
           }
           self.recipes = recipes
+        })
+        db.ingredients(completion: { (ingredients, error) in
+
+          if let error = error {
+            print("Error fetching ingredients from DB: \(error.localizedDescription)")
+          }
+          self.ingredientStock = ingredients
         })
 
         print("Succesfully signed in with Firebase.")
@@ -87,7 +106,9 @@ extension RecipeListViewController: UITableViewDataSource {
     guard let cell = tableView.dequeueReusableCell(with: RecipeCell.self)
       else { return UITableViewCell() }
 
-    cell.setup(with: recipes[indexPath.row])
+    let recipe = recipes[indexPath.row]
+    let stockCount = ingredientStock.filter { recipe.ingredients.contains($0) && $0.amount != .none }.count
+    cell.setup(with: recipe, stockCount: stockCount)
 
     return cell
   }
