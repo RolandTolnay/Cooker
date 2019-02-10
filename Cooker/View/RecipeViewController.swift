@@ -14,14 +14,13 @@ class RecipeViewController: UIViewController {
 
   private var ingredients = [Ingredient]() {
     didSet {
-      ingredients.sort { $0.name < $1.name }
       ingredientsTableView.reloadData()
     }
   }
 
   @IBOutlet private weak var nameTextField: UITextField!
   @IBOutlet private weak var ingredientsTableView: UITableView!
-  @IBOutlet private weak var doneButton: UIBarButtonItem!
+  @IBOutlet private weak var saveButton: UIBarButtonItem!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,7 +29,6 @@ class RecipeViewController: UIViewController {
 
     setupTableView()
     recipe.map { setup(withRecipe: $0) }
-    updateDoneButtonEnabled()
 
     if !isPresentedModally {
       navigationItem.leftBarButtonItem = nil
@@ -47,16 +45,16 @@ class RecipeViewController: UIViewController {
       if let error = error {
         print("Error fetching ingredients from DB: \(error.localizedDescription)")
       }
-      ingredients.forEach {
-        if !self.ingredients.contains($0) {
-          self.ingredients.append($0)
-        }
-      }
+      self.ingredients.append(contentsOf:
+        ingredients
+          .filter { !self.ingredients.contains($0) }
+          .sorted { $0.name < $1.name }
+      )
       self.recipe.map { self.pick(ingredients: $0.ingredients) }
     })
   }
 
-  @IBAction private func onDoneTapped(_ sender: Any) {
+  @IBAction private func onSaveTapped(_ sender: Any) {
 
     guard let selectedRows = ingredientsTableView.indexPathsForSelectedRows,
       let recipeName = nameTextField.text,
@@ -87,7 +85,7 @@ class RecipeViewController: UIViewController {
 
   @IBAction private func onRecipeNameChanged(_ sender: Any) {
 
-    updateDoneButtonEnabled()
+    updateSaveButtonEnabled()
   }
 
   @IBAction func onRecipeNameReturn(_ sender: Any) {
@@ -117,9 +115,9 @@ extension RecipeViewController {
     pick(ingredients: recipe.ingredients)
   }
 
-  private func updateDoneButtonEnabled() {
+  private func updateSaveButtonEnabled() {
 
-    doneButton.isEnabled = ingredientsTableView.indexPathsForSelectedRows != nil
+    saveButton.isEnabled = ingredientsTableView.indexPathsForSelectedRows != nil
       && !(nameTextField.text ?? "").isEmpty
   }
 
@@ -158,11 +156,11 @@ extension RecipeViewController: UITableViewDelegate {
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-    updateDoneButtonEnabled()
+    updateSaveButtonEnabled()
   }
 
   func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
 
-    updateDoneButtonEnabled()
+    updateSaveButtonEnabled()
   }
 }

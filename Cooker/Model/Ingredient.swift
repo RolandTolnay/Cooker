@@ -44,6 +44,29 @@ extension Ingredient: Equatable {
   }
 }
 
+extension Ingredient: Comparable {
+
+  static func < (lhs: Ingredient, rhs: Ingredient) -> Bool {
+
+    switch (lhs.amount, rhs.amount) {
+    case (.none, .piece),
+         (.none, .gramms),
+         (.none, .millilitres):
+      return true
+    case (.piece, .none),
+         (.gramms, .none),
+         (.millilitres, .none):
+      return false
+    case (.piece(let lhsAmount), .piece(let rhsAmount)),
+         (.gramms(let lhsAmount), .gramms(let rhsAmount)),
+         (.millilitres(let lhsAmount), .millilitres(let rhsAmount)):
+      return lhsAmount > rhsAmount
+    default:
+      return lhs.name < rhs.name
+    }
+  }
+}
+
 extension Ingredient {
 
   init(dictionary: [String: Any]) {

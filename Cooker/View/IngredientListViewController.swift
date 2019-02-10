@@ -12,7 +12,7 @@ class IngredientListViewController: UIViewController {
 
   private var ingredients = [Ingredient]() {
     didSet {
-      ingredients.sort { $0.name < $1.name }
+      ingredients.sort { $0 > $1 }
       ingredientsTableView.reloadData()
     }
   }

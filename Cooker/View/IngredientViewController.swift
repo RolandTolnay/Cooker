@@ -15,7 +15,7 @@ class IngredientViewController: UIViewController {
   @IBOutlet private weak var nameTextField: UITextField!
   @IBOutlet private weak var amountTextField: UITextField!
   @IBOutlet private weak var amountPickerView: UIPickerView!
-  @IBOutlet private weak var doneButton: UIBarButtonItem!
+  @IBOutlet private weak var saveButton: UIBarButtonItem!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,7 +25,6 @@ class IngredientViewController: UIViewController {
     setupPickerView()
     ingredient.map { setup(withIngredient: $0) }
     updatePickerViewHidden()
-    updateDoneButtonEnabled()
 
     if !isPresentedModally {
       navigationItem.leftBarButtonItem = nil
@@ -39,7 +38,7 @@ class IngredientViewController: UIViewController {
     nameTextField.becomeFirstResponder()
   }
 
-  @IBAction private func onDoneTapped(_ sender: Any) {
+  @IBAction private func onSaveTapped(_ sender: Any) {
 
     saveIngredientAndDismiss()
   }
@@ -51,7 +50,7 @@ class IngredientViewController: UIViewController {
 
   @IBAction private func onIngredientNameChanged(_ sender: Any) {
 
-    updateDoneButtonEnabled()
+    updateSaveButtonEnabled()
   }
 
   @IBAction private func onAmountChanged(_ sender: Any) {
@@ -96,9 +95,9 @@ extension IngredientViewController {
     amountPickerView.isHidden = (amountTextField.text ?? "").isEmpty
   }
 
-  private func updateDoneButtonEnabled() {
+  private func updateSaveButtonEnabled() {
 
-    doneButton.isEnabled = !(nameTextField.text ?? "").isEmpty
+    saveButton.isEnabled = !(nameTextField.text ?? "").isEmpty
   }
 
   private func saveIngredientAndDismiss() {
@@ -150,4 +149,8 @@ extension IngredientViewController: UIPickerViewDataSource {
 
 extension IngredientViewController: UIPickerViewDelegate {
 
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+
+    updateSaveButtonEnabled()
+  }
 }

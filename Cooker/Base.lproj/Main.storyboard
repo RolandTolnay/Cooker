@@ -106,20 +106,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipe Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y49-MN-jxp">
-                                <rect key="frame" x="40" y="104" width="295" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="PId-Ah-4Rd"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="onRecipeNameChanged:" destination="nLT-Yp-Jlf" eventType="editingChanged" id="XHn-qG-qBt"/>
-                                    <action selector="onRecipeNameReturn:" destination="nLT-Yp-Jlf" eventType="primaryActionTriggered" id="zZp-GG-gh0"/>
-                                </connections>
-                            </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZWE-7M-0HJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZWE-7M-0HJ">
                                 <rect key="frame" x="40" y="184" width="295" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -148,6 +135,19 @@
                                     </constraints>
                                 </view>
                             </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipe Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y49-MN-jxp">
+                                <rect key="frame" x="40" y="104" width="295" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="PId-Ah-4Rd"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="onRecipeNameChanged:" destination="nLT-Yp-Jlf" eventType="editingChanged" id="XHn-qG-qBt"/>
+                                    <action selector="onRecipeNameReturn:" destination="nLT-Yp-Jlf" eventType="primaryActionTriggered" id="zZp-GG-gh0"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -167,16 +167,16 @@
                                 <action selector="onCancelTapped:" destination="nLT-Yp-Jlf" id="DpB-k9-375"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="bN0-oB-DFI">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="bN0-oB-DFI">
                             <connections>
-                                <action selector="onDoneTapped:" destination="nLT-Yp-Jlf" id="YhL-Cp-iIu"/>
+                                <action selector="onSaveTapped:" destination="nLT-Yp-Jlf" id="YhL-Cp-iIu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="doneButton" destination="bN0-oB-DFI" id="zi8-si-xtP"/>
                         <outlet property="ingredientsTableView" destination="ZWE-7M-0HJ" id="kql-m2-seF"/>
                         <outlet property="nameTextField" destination="Y49-MN-jxp" id="joD-wq-GDl"/>
+                        <outlet property="saveButton" destination="bN0-oB-DFI" id="zi8-si-xtP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RVv-Vt-dhq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -219,9 +219,9 @@
                                 </connections>
                             </textField>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4H-xI-iuK">
-                                <rect key="frame" x="172" y="149" width="163" height="110"/>
+                                <rect key="frame" x="172" y="144" width="163" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="110" id="eEa-Y3-gJg"/>
+                                    <constraint firstAttribute="height" constant="120" id="eEa-Y3-gJg"/>
                                 </constraints>
                             </pickerView>
                         </subviews>
@@ -244,17 +244,17 @@
                                 <action selector="onCancelTapped:" destination="M8V-ZU-c7F" id="7zA-Fg-jj0"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="XR1-QX-UAE">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="XR1-QX-UAE">
                             <connections>
-                                <action selector="onDoneTapped:" destination="M8V-ZU-c7F" id="oCh-cs-DyC"/>
+                                <action selector="onSaveTapped:" destination="M8V-ZU-c7F" id="oCh-cs-DyC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="amountPickerView" destination="g4H-xI-iuK" id="VV0-ml-3Ne"/>
                         <outlet property="amountTextField" destination="oAr-OB-aiV" id="jjc-97-pIJ"/>
-                        <outlet property="doneButton" destination="XR1-QX-UAE" id="N7q-kl-oLd"/>
                         <outlet property="nameTextField" destination="qUK-OK-gnH" id="jjy-T2-GQ8"/>
+                        <outlet property="saveButton" destination="XR1-QX-UAE" id="N7q-kl-oLd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQo-ud-rSQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
