@@ -11,8 +11,8 @@ import Foundation
 struct Ingredient {
 
   let id: String
-  let name: String
-  let amount: Amount
+  var name: String
+  var amount: Amount
 
   init(id: String = "",
        name: String,
@@ -50,6 +50,70 @@ enum Amount {
   case mg(amount: Int)
   case ml(amount: Int)
   case none
+
+  var title: String? {
+
+    switch self {
+    case .piece:
+      return "pieces"
+    case .mg:
+      return "mg"
+    case .ml:
+      return "ml"
+    default:
+      return nil
+    }
+  }
+
+  var value: Int? {
+
+    get {
+
+      switch self {
+      case .piece(let amount),
+           .mg(let amount),
+           .ml(let amount):
+        return amount
+      default:
+        return nil
+      }
+    }
+    set {
+
+      guard let value = newValue else { return }
+      switch self {
+      case .piece:
+        self = .piece(amount: value)
+      case .mg:
+        self = .mg(amount: value)
+      case .ml:
+        self = .ml(amount: value)
+      default:
+        assertionFailure("Attempting to set amount value for .none")
+        return
+      }
+    }
+  }
+
+  static var selectableCases: [Amount] {
+    return [.piece(amount: 0), .mg(amount: 0), .ml(amount: 0)]
+  }
+}
+
+extension Amount: Equatable {
+
+  static func == (lhs: Amount, rhs: Amount) -> Bool {
+
+    switch (lhs, rhs) {
+    case (.piece, .piece),
+         (.mg, .mg),
+         (.ml, .ml),
+         (.none, .none):
+      return true
+    default:
+      return false
+    }
+  }
 }
 
 extension Amount: CustomStringConvertible {

@@ -10,27 +10,27 @@ import UIKit
 
 class RecipeViewController: UIViewController {
 
-  @IBOutlet weak var nameTextField: UITextField!
-  @IBOutlet weak var ingredientsTableView: UITableView!
-  @IBOutlet weak var doneButton: UIBarButtonItem!
+  var recipe: Recipe?
 
   private let ingredients = [
     Ingredient(name: "sugar"),
     Ingredient(name: "flour"),
-    Ingredient(name: "milk"),
-    ]
+    Ingredient(name: "milk")
+  ]
 
-  var recipe: Recipe?
+  @IBOutlet private weak var nameTextField: UITextField!
+  @IBOutlet private weak var ingredientsTableView: UITableView!
+  @IBOutlet private weak var doneButton: UIBarButtonItem!
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     setupTableView()
-    recipe.map { setup(from: $0) }
+    recipe.map { setup(withRecipe: $0) }
     updateDoneButtonEnabled()
   }
 
-  @IBAction func saveRecipe(_ sender: Any) {
+  @IBAction private func onDoneTapped(_ sender: Any) {
 
     guard let selectedRows = ingredientsTableView.indexPathsForSelectedRows,
       let recipeName = nameTextField.text,
@@ -38,21 +38,20 @@ class RecipeViewController: UIViewController {
       else { return }
 
     let selectedIngredients = selectedRows.map { ingredients[$0.row] }
-    if var recipe = recipe {
-      recipe.name = recipeName
-      recipe.ingredients = selectedIngredients
-      self.recipe = recipe
-    } else {
-      recipe = Recipe(name: recipeName, ingredients: selectedIngredients)
-    }
+    recipe = Recipe(name: recipeName, ingredients: selectedIngredients)
 
     print("Saving recipe: \(recipe?.description ?? "N/A")")
     // Persist recipe to DB
 
     navigationController?.popViewController(animated: true)
   }
+  @IBAction func onAddIngredientTapped(_ sender: Any) {
 
-  @IBAction func onRecipeNameChanged(_ sender: Any) {
+    let ingredientViewController = IngredientViewController.instantiate()
+    navigationController?.pushViewController(ingredientViewController, animated: true)
+  }
+
+  @IBAction private func onRecipeNameChanged(_ sender: Any) {
 
     updateDoneButtonEnabled()
   }
@@ -62,7 +61,7 @@ extension RecipeViewController {
 
   private func setupTableView() {
 
-    ingredientsTableView.estimatedRowHeight = 75
+    ingredientsTableView.estimatedRowHeight = 83
     ingredientsTableView.rowHeight = UITableView.automaticDimension
 
     ingredientsTableView.tableFooterView = UIView()
@@ -72,7 +71,7 @@ extension RecipeViewController {
     ingredientsTableView.register(cell: IngredientCell.self)
   }
 
-  private func setup(from recipe: Recipe) {
+  private func setup(withRecipe recipe: Recipe) {
 
     nameTextField.text = recipe.name
     recipe.ingredients.forEach {
