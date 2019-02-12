@@ -170,7 +170,7 @@ extension RecipeViewController: UITableViewDataSource {
 
     cell.setup(withIngredient: ingredients[indexPath.row])
     cell.amountHidden = true
-    cell.tintColor = #colorLiteral(red: 0.0862745098, green: 0.6274509804, blue: 0.5215686275, alpha: 1)
+    cell.tintColor = #colorLiteral(red: 0.9019607843, green: 0.4941176471, blue: 0.1333333333, alpha: 1)
     cell.selectionStyle = .none
 
     return cell

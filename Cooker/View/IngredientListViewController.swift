@@ -33,15 +33,7 @@ class IngredientListViewController: UIViewController {
 
   @IBAction private func onAddIngredientTapped(_ sender: Any) {
 
-    let ingredientVC = IngredientViewController.instantiate()
-    ingredientVC.existingIngredients = ingredients
-    ingredientVC.onIngredientAdded = { [weak self] ingredient in
-
-      guard let welf = self else { return }
-      let indexPath = IndexPath(row: 0, section: 0)
-      welf.ingredients.insert(ingredient, at: indexPath.row)
-    }
-    present(ingredientVC, animated: true, completion: nil)
+    presentAddIngredientScreen()
   }
 }
 
@@ -69,6 +61,26 @@ extension IngredientListViewController {
       self.ingredients = ingredients
     })
   }
+
+  private func presentAddIngredientScreen(with ingredient: Ingredient? = nil) {
+
+    let ingredientVC = IngredientViewController.instantiate()
+    ingredientVC.ingredient = ingredient
+    ingredientVC.existingIngredients = ingredients.filter { $0 != ingredient }
+    ingredientVC.onIngredientAdded = { [weak self] ingredient in
+
+      guard let welf = self else { return }
+      if let index = welf.ingredients.index(of: ingredient) {
+        welf.ingredients[index].amount = ingredient.amount
+        DispatchQueue.main.async {
+          welf.ingredientsTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        }
+      } else {
+        welf.ingredients.append(ingredient)
+      }
+    }
+    present(ingredientVC, animated: true, completion: nil)
+  }
 }
 
 extension IngredientListViewController: UITableViewDataSource {
@@ -94,10 +106,7 @@ extension IngredientListViewController: UITableViewDelegate {
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-    let ingredientViewController = IngredientViewController.instantiate()
-    ingredientViewController.ingredient = ingredients[indexPath.row]
-    present(ingredientViewController, animated: true, completion: nil)
-
+    presentAddIngredientScreen(with: ingredients[indexPath.row])
     tableView.deselectRow(at: indexPath, animated: true)
   }
 

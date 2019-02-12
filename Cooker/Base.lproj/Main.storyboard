@@ -49,7 +49,7 @@
                                                         <constraint firstAttribute="height" constant="22" id="fDY-Tf-9xZ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -117,7 +117,7 @@
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Recipe Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y49-MN-jxp">
                                 <rect key="frame" x="40" y="104" width="295" height="40"/>
-                                <color key="tintColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="PId-Ah-4Rd"/>
                                 </constraints>
@@ -204,7 +204,7 @@
                                 <viewLayoutGuide key="safeArea" id="cNv-xE-HpW"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5m-s5-4vy">
-                                <rect key="frame" x="20" y="104" width="335" height="270"/>
+                                <rect key="frame" x="20" y="60" width="335" height="270"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2K2-Ml-Ej2">
                                         <rect key="frame" x="144" y="218" width="47" height="40"/>
@@ -217,7 +217,7 @@
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ingredient Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qUK-OK-gnH">
                                         <rect key="frame" x="40" y="20" width="255" height="40"/>
-                                        <color key="tintColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Jz1-5f-ciC"/>
                                         </constraints>
@@ -354,7 +354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQo-ud-rSQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3092" y="444.82758620689657"/>
+            <point key="canvasLocation" x="2305" y="456"/>
         </scene>
         <!--Ingredient Stock-->
         <scene sceneID="wg7-f3-ORb">
@@ -492,24 +492,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dv4-a5-4fs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2305" y="-322"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Xg9-Dw-T3B">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LbA-vo-kad" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Zdg-rh-pgB">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="M8V-ZU-c7F" kind="relationship" relationship="rootViewController" id="a2C-5h-nFy"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dyo-P0-xKK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2292" y="445"/>
         </scene>
     </scenes>
     <resources>

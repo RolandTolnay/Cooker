@@ -112,7 +112,8 @@ class IngredientViewController: UIViewController {
     
     guard let location = touches.first?.location(in: view),
       !opaqueView.frame.contains(location) else { return }
-    
+
+    view.endEditing(true)
     dismiss(animated: true, completion: nil)
   }
 }
