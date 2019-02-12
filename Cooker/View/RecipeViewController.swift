@@ -29,6 +29,7 @@ class RecipeViewController: UIViewController {
 
     setupTableView()
     recipe.map { setup(withRecipe: $0) }
+    nameTextField.addPaddingLeft(10.0)
 
     if !isPresentedModally {
       navigationItem.leftBarButtonItem = nil
@@ -146,7 +147,7 @@ extension RecipeViewController: UITableViewDataSource {
 
     cell.setup(withIngredient: ingredients[indexPath.row])
     cell.amountHidden = true
-    cell.tintColor = .white
+    cell.tintColor = #colorLiteral(red: 0.0862745098, green: 0.6274509804, blue: 0.5215686275, alpha: 1)
     cell.selectionStyle = .none
 
     return cell

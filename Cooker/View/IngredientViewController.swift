@@ -25,6 +25,8 @@ class IngredientViewController: UIViewController {
     setupPickerView()
     ingredient.map { setup(withIngredient: $0) }
     updatePickerViewHidden()
+    nameTextField.addPaddingLeft(10.0)
+    amountTextField.addPaddingLeft(10.0)
 
     if !isPresentedModally {
       navigationItem.leftBarButtonItem = nil

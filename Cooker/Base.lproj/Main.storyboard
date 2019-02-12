@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dja-3y-yEp">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="502"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <color key="separatorColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecipeCell" rowHeight="97" id="9kl-Is-GrY" customClass="RecipeCell" customModule="Cooker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="97"/>
@@ -33,7 +33,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5z2-w7-fD5">
                                                     <rect key="frame" x="15" y="25" width="292" height="25"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K6A-Re-zo9">
@@ -49,7 +49,7 @@
                                                         <constraint firstAttribute="height" constant="22" id="fDY-Tf-9xZ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -84,8 +84,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Recipes" id="2Pz-ug-VUj">
+                    <navigationItem key="navigationItem" title="Recipes" largeTitleDisplayMode="always" id="2Pz-ug-VUj">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="KLo-dJ-Pf3">
+                            <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="pBr-Pg-9vR" kind="presentation" identifier="recipeDetailSegue" id="xV4-Py-3rx"/>
                             </connections>
@@ -110,7 +111,8 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZWE-7M-0HJ">
                                 <rect key="frame" x="40" y="184" width="295" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="separatorColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="bf8-5s-Rh0">
                                     <rect key="frame" x="0.0" y="0.0" width="295" height="44"/>
@@ -122,7 +124,7 @@
                                                 <constraint firstAttribute="height" constant="34" id="nGa-TO-szK"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="16"/>
-                                            <color key="tintColor" red="0.086274509803921567" green="0.62745098039215685" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title="+ Add Ingredient"/>
                                             <connections>
                                                 <segue destination="LbA-vo-kad" kind="presentation" id="Xik-UY-Vic"/>
@@ -138,12 +140,13 @@
                                     </constraints>
                                 </view>
                             </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipe Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y49-MN-jxp">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Recipe Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y49-MN-jxp">
                                 <rect key="frame" x="40" y="104" width="295" height="40"/>
+                                <color key="tintColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="PId-Ah-4Rd"/>
                                 </constraints>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -151,26 +154,38 @@
                                     <action selector="onRecipeNameReturn:" destination="nLT-Yp-Jlf" eventType="primaryActionTriggered" id="zZp-GG-gh0"/>
                                 </connections>
                             </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jmD-Tc-sm6">
+                                <rect key="frame" x="40" y="144" width="295" height="2"/>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="V6g-c6-avl"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="jmD-Tc-sm6" firstAttribute="trailing" secondItem="Y49-MN-jxp" secondAttribute="trailing" id="BMb-3j-hR9"/>
                             <constraint firstItem="Y49-MN-jxp" firstAttribute="top" secondItem="KX4-XW-6NO" secondAttribute="top" constant="40" id="FGV-Ya-OsQ"/>
                             <constraint firstItem="KX4-XW-6NO" firstAttribute="trailing" secondItem="Y49-MN-jxp" secondAttribute="trailing" constant="40" id="LKM-jo-IL1"/>
                             <constraint firstItem="Y49-MN-jxp" firstAttribute="leading" secondItem="KX4-XW-6NO" secondAttribute="leading" constant="40" id="Sof-Od-YA9"/>
                             <constraint firstItem="KX4-XW-6NO" firstAttribute="trailing" secondItem="ZWE-7M-0HJ" secondAttribute="trailing" constant="40" id="Vhi-bV-K7k"/>
                             <constraint firstItem="ZWE-7M-0HJ" firstAttribute="leading" secondItem="KX4-XW-6NO" secondAttribute="leading" constant="40" id="W7o-9Y-MIz"/>
                             <constraint firstItem="KX4-XW-6NO" firstAttribute="bottom" secondItem="ZWE-7M-0HJ" secondAttribute="bottom" constant="40" id="XOr-kd-fc6"/>
+                            <constraint firstItem="jmD-Tc-sm6" firstAttribute="top" secondItem="Y49-MN-jxp" secondAttribute="bottom" id="nHE-GQ-LjX"/>
+                            <constraint firstItem="jmD-Tc-sm6" firstAttribute="leading" secondItem="Y49-MN-jxp" secondAttribute="leading" id="nHg-Hh-ZGh"/>
                             <constraint firstItem="ZWE-7M-0HJ" firstAttribute="top" secondItem="Y49-MN-jxp" secondAttribute="bottom" constant="40" id="qxU-Jl-TdD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KX4-XW-6NO"/>
                     </view>
-                    <navigationItem key="navigationItem" id="IjP-I4-x5i">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="IjP-I4-x5i">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="VDO-ZE-pv4">
+                            <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onCancelTapped:" destination="nLT-Yp-Jlf" id="DpB-k9-375"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="bN0-oB-DFI">
+                            <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onSaveTapped:" destination="nLT-Yp-Jlf" id="YhL-Cp-iIu"/>
                             </connections>
@@ -184,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RVv-Vt-dhq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3081" y="-322"/>
+            <point key="canvasLocation" x="3080.8000000000002" y="-322.48875562218893"/>
         </scene>
         <!--Ingredient View Controller-->
         <scene sceneID="dOf-Ye-DZK">
@@ -194,12 +209,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingredient Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qUK-OK-gnH">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ingredient Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qUK-OK-gnH">
                                 <rect key="frame" x="40" y="104" width="295" height="40"/>
+                                <color key="tintColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Jz1-5f-ciC"/>
                                 </constraints>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="continue"/>
                                 <connections>
@@ -207,13 +223,14 @@
                                     <action selector="onIngredientNameReturn:" destination="M8V-ZU-c7F" eventType="primaryActionTriggered" id="KtG-Ck-8nh"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="oAr-OB-aiV">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amount" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="oAr-OB-aiV">
                                 <rect key="frame" x="40" y="184" width="120" height="40"/>
+                                <color key="tintColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="Bg3-Vz-Cte"/>
                                     <constraint firstAttribute="height" constant="40" id="nh9-fO-jIh"/>
                                 </constraints>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                 <connections>
@@ -223,31 +240,55 @@
                             </textField>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4H-xI-iuK">
                                 <rect key="frame" x="172" y="144" width="163" height="120"/>
+                                <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="eEa-Y3-gJg"/>
                                 </constraints>
                             </pickerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uu9-HA-p6n">
+                                <rect key="frame" x="40" y="144" width="295" height="2"/>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="OCk-aO-pCs"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NIh-1q-Uuw">
+                                <rect key="frame" x="40" y="224" width="120" height="2"/>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="iQ9-WW-jEt"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="cNv-xE-HpW"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="GZV-D3-n6r" firstAttribute="trailing" secondItem="qUK-OK-gnH" secondAttribute="trailing" constant="40" id="6xO-Kw-D2U"/>
                             <constraint firstItem="qUK-OK-gnH" firstAttribute="top" secondItem="GZV-D3-n6r" secondAttribute="top" constant="40" id="7vO-lX-TfN"/>
+                            <constraint firstItem="NIh-1q-Uuw" firstAttribute="top" secondItem="oAr-OB-aiV" secondAttribute="bottom" id="CMF-vi-k0v"/>
+                            <constraint firstItem="uu9-HA-p6n" firstAttribute="trailing" secondItem="qUK-OK-gnH" secondAttribute="trailing" id="DSK-yT-caE"/>
                             <constraint firstItem="GZV-D3-n6r" firstAttribute="trailing" secondItem="g4H-xI-iuK" secondAttribute="trailing" constant="40" id="KUP-hV-8Qx"/>
+                            <constraint firstItem="NIh-1q-Uuw" firstAttribute="trailing" secondItem="oAr-OB-aiV" secondAttribute="trailing" id="UaO-aY-fX2"/>
                             <constraint firstItem="g4H-xI-iuK" firstAttribute="leading" secondItem="oAr-OB-aiV" secondAttribute="trailing" constant="12" id="hAN-kg-gW6"/>
                             <constraint firstItem="g4H-xI-iuK" firstAttribute="centerY" secondItem="oAr-OB-aiV" secondAttribute="centerY" id="iLO-MP-jmq"/>
                             <constraint firstItem="qUK-OK-gnH" firstAttribute="leading" secondItem="GZV-D3-n6r" secondAttribute="leading" constant="40" id="mTt-rW-TZ2"/>
+                            <constraint firstItem="NIh-1q-Uuw" firstAttribute="leading" secondItem="oAr-OB-aiV" secondAttribute="leading" id="nGR-ja-id0"/>
+                            <constraint firstItem="uu9-HA-p6n" firstAttribute="top" secondItem="qUK-OK-gnH" secondAttribute="bottom" id="nsq-Zp-XeZ"/>
                             <constraint firstItem="oAr-OB-aiV" firstAttribute="leading" secondItem="GZV-D3-n6r" secondAttribute="leading" constant="40" id="wfg-aa-4wH"/>
                             <constraint firstItem="oAr-OB-aiV" firstAttribute="top" secondItem="qUK-OK-gnH" secondAttribute="bottom" constant="40" id="xZu-H2-yB6"/>
+                            <constraint firstItem="uu9-HA-p6n" firstAttribute="leading" secondItem="qUK-OK-gnH" secondAttribute="leading" id="xtB-hn-nam"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GZV-D3-n6r"/>
                     </view>
-                    <navigationItem key="navigationItem" id="pUZ-fz-Xf1">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="pUZ-fz-Xf1">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="80e-Fg-swq">
+                            <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onCancelTapped:" destination="M8V-ZU-c7F" id="7zA-Fg-jj0"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="XR1-QX-UAE">
+                            <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onSaveTapped:" destination="M8V-ZU-c7F" id="oCh-cs-DyC"/>
                             </connections>
@@ -273,10 +314,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mu1-ST-ca5">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="502"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <color key="separatorColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -290,6 +331,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Ingredient Stock" id="e2I-NE-zOL">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="flM-VM-rj2">
+                            <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="LbA-vo-kad" kind="presentation" id="eTy-U8-tJ2"/>
                             </connections>
@@ -311,6 +353,8 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.90196078431372551" green="0.49411764705882355" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="qnt-s6-MzR" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
@@ -327,9 +371,16 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qnt-s6-MzR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Recipes" image="pan-tabbar" id="acW-dT-cKf"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bXk-Uj-a1O">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="bXk-Uj-a1O">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -346,9 +397,16 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="miy-DE-sp3" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Ingredients" image="cart-tabbar" id="cPa-gy-q4n"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="saY-88-UKi">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="saY-88-UKi">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -367,6 +425,13 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7kz-JF-wAq">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -380,7 +445,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Xg9-Dw-T3B">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dyo-P0-xKK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LbA-vo-kad" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Zdg-rh-pgB">
@@ -392,6 +456,7 @@
                         <segue destination="M8V-ZU-c7F" kind="relationship" relationship="rootViewController" id="a2C-5h-nFy"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dyo-P0-xKK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2292" y="445"/>
         </scene>
