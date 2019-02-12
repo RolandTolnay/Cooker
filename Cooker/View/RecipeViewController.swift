@@ -92,8 +92,9 @@ class RecipeViewController: UIViewController {
       welf.ingredients.insert(ingredient, at: indexPath.row)
       welf.ingredientsTableView.insertRows(at: [indexPath], with: .top)
       welf.ingredientsTableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
+      welf.updateSaveButtonEnabled()
     }
-    present(addIngredientVC.navEmbedded, animated: true, completion: nil)
+    present(addIngredientVC, animated: true, completion: nil)
   }
 }
 

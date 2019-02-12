@@ -28,20 +28,20 @@ class IngredientListViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
-    Service.db?.ingredients(completion: { (ingredients, error) in
-
-      if let error = error {
-        print("Error fetching ingredients from DB: \(error.localizedDescription)")
-      }
-      self.ingredients = ingredients
-    })
+    loadIngredients()
   }
 
   @IBAction private func onAddIngredientTapped(_ sender: Any) {
 
     let ingredientVC = IngredientViewController.instantiate()
     ingredientVC.existingIngredients = ingredients
-    present(ingredientVC.navEmbedded, animated: true, completion: nil)
+    ingredientVC.onIngredientAdded = { [weak self] ingredient in
+
+      guard let welf = self else { return }
+      let indexPath = IndexPath(row: 0, section: 0)
+      welf.ingredients.insert(ingredient, at: indexPath.row)
+    }
+    present(ingredientVC, animated: true, completion: nil)
   }
 }
 
@@ -57,6 +57,17 @@ extension IngredientListViewController {
     ingredientsTableView.delegate = self
 
     ingredientsTableView.register(cell: IngredientCell.self)
+  }
+
+  private func loadIngredients() {
+
+    Service.db?.ingredients(completion: { (ingredients, error) in
+
+      if let error = error {
+        print("Error fetching ingredients from DB: \(error.localizedDescription)")
+      }
+      self.ingredients = ingredients
+    })
   }
 }
 
@@ -85,7 +96,7 @@ extension IngredientListViewController: UITableViewDelegate {
 
     let ingredientViewController = IngredientViewController.instantiate()
     ingredientViewController.ingredient = ingredients[indexPath.row]
-    navigationController?.pushViewController(ingredientViewController, animated: true)
+    present(ingredientViewController, animated: true, completion: nil)
 
     tableView.deselectRow(at: indexPath, animated: true)
   }
