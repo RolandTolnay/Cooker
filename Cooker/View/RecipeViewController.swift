@@ -12,11 +12,7 @@ class RecipeViewController: UIViewController {
 
   var recipe: Recipe?
 
-  private var ingredients = [Ingredient]() {
-    didSet {
-      ingredientsTableView.reloadData()
-    }
-  }
+  private var ingredients = [Ingredient]()
 
   @IBOutlet private weak var nameTextField: UITextField!
   @IBOutlet private weak var ingredientsTableView: UITableView!
@@ -25,16 +21,17 @@ class RecipeViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    hideKeyboardWhenTappedArround()
-
     setupTableView()
-    recipe.map { setup(withRecipe: $0) }
     nameTextField.addPaddingLeft(10.0)
+    hideKeyboardWhenTappedArround()
 
     if !isPresentedModally {
       navigationItem.leftBarButtonItem = nil
       navigationItem.hidesBackButton = false
     }
+
+    recipe.map { setup(withRecipe: $0) }
+    loadIngredients()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -43,18 +40,6 @@ class RecipeViewController: UIViewController {
     if (nameTextField.text ?? "").isEmpty {
       nameTextField.becomeFirstResponder()
     }
-    Service.db?.ingredients(completion: { (ingredients, error) in
-
-      if let error = error {
-        print("Error fetching ingredients from DB: \(error.localizedDescription)")
-      }
-      self.ingredients.append(contentsOf:
-        ingredients
-          .filter { !self.ingredients.contains($0) }
-          .sorted { $0.name < $1.name }
-      )
-      self.recipe.map { self.pick(ingredients: $0.ingredients) }
-    })
   }
 
   @IBAction private func onSaveTapped(_ sender: Any) {
@@ -91,9 +76,24 @@ class RecipeViewController: UIViewController {
     updateSaveButtonEnabled()
   }
 
-  @IBAction func onRecipeNameReturn(_ sender: Any) {
+  @IBAction private func onRecipeNameReturn(_ sender: Any) {
 
     view.endEditing(true)
+  }
+
+  @IBAction private func onAddIngredientTapped(_ sender: Any) {
+
+    let addIngredientVC = IngredientViewController.instantiate()
+    addIngredientVC.onIngredientAdded = { [weak self] ingredient in
+
+      guard let welf = self else { return }
+      let indexPath = IndexPath(row: 0, section: 0)
+      welf.ingredients.insert(ingredient, at: indexPath.row)
+      welf.ingredientsTableView.insertRows(at: [indexPath], with: .top)
+      welf.ingredientsTableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
+    }
+    let navVC = UINavigationController(rootViewController: addIngredientVC)
+    present(navVC, animated: true, completion: nil)
   }
 }
 
@@ -115,6 +115,7 @@ extension RecipeViewController {
 
     nameTextField.text = recipe.name
     ingredients = recipe.ingredients
+    ingredientsTableView.reloadData()
     pick(ingredients: recipe.ingredients)
   }
 
@@ -132,6 +133,25 @@ extension RecipeViewController {
         ingredientsTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
       }
     }
+  }
+
+  private func loadIngredients() {
+
+    Service.db?.ingredients(completion: { (ingredients, error) in
+
+      if let error = error {
+        print("Error fetching ingredients from DB: \(error.localizedDescription)")
+      }
+      self.ingredients.append(contentsOf:
+        ingredients
+          .filter { !self.ingredients.contains($0) }
+          .sorted { $0.name < $1.name }
+      )
+      DispatchQueue.main.async {
+        self.ingredientsTableView.reloadData()
+        self.recipe.map { self.pick(ingredients: $0.ingredients) }
+      }
+    })
   }
 }
 

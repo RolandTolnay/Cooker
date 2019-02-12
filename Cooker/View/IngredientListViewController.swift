@@ -17,7 +17,7 @@ class IngredientListViewController: UIViewController {
     }
   }
 
-  @IBOutlet weak var ingredientsTableView: UITableView!
+  @IBOutlet private weak var ingredientsTableView: UITableView!
 
   override func viewDidLoad() {
     super.viewDidLoad()

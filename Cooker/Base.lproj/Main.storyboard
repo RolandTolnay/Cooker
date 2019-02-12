@@ -142,7 +142,7 @@
                                 <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="+ Add Ingredient"/>
                                 <connections>
-                                    <segue destination="LbA-vo-kad" kind="presentation" id="Xik-UY-Vic"/>
+                                    <action selector="onAddIngredientTapped:" destination="nLT-Yp-Jlf" eventType="touchUpInside" id="8xz-DN-ogg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -483,7 +483,4 @@
         <image name="cart-tabbar" width="39.200000762939453" height="39.200000762939453"/>
         <image name="pan-tabbar" width="24.5" height="24.5"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Xik-UY-Vic"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -11,6 +11,7 @@ import UIKit
 class IngredientViewController: UIViewController {
 
   var ingredient: Ingredient?
+  var onIngredientAdded: ((Ingredient) -> Void)?
 
   @IBOutlet private weak var nameTextField: UITextField!
   @IBOutlet private weak var amountTextField: UITextField!
@@ -159,6 +160,7 @@ extension IngredientViewController {
         print("Succesfully saved ingredient: \(ingredient)")
       }
     })
+    onIngredientAdded?(ingredient)
 
     dismissOrPop()
   }
