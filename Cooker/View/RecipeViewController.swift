@@ -84,6 +84,7 @@ class RecipeViewController: UIViewController {
   @IBAction private func onAddIngredientTapped(_ sender: Any) {
 
     let addIngredientVC = IngredientViewController.instantiate()
+    addIngredientVC.existingIngredients = ingredients
     addIngredientVC.onIngredientAdded = { [weak self] ingredient in
 
       guard let welf = self else { return }
@@ -92,8 +93,7 @@ class RecipeViewController: UIViewController {
       welf.ingredientsTableView.insertRows(at: [indexPath], with: .top)
       welf.ingredientsTableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
     }
-    let navVC = UINavigationController(rootViewController: addIngredientVC)
-    present(navVC, animated: true, completion: nil)
+    present(addIngredientVC.navEmbedded, animated: true, completion: nil)
   }
 }
 

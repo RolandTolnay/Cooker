@@ -351,7 +351,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="flM-VM-rj2">
                             <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="LbA-vo-kad" kind="presentation" id="eTy-U8-tJ2"/>
+                                <action selector="onAddIngredientTapped:" destination="8rJ-Kc-sve" id="udb-fj-fj2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

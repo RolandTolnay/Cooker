@@ -165,6 +165,11 @@ extension UIViewController {
       navigationController?.popViewController(animated: true)
     }
   }
+
+  var navEmbedded: UINavigationController {
+
+    return UINavigationController(rootViewController: self)
+  }
 }
 
 // MARK: - UITextField

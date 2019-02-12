@@ -36,6 +36,13 @@ class IngredientListViewController: UIViewController {
       self.ingredients = ingredients
     })
   }
+
+  @IBAction private func onAddIngredientTapped(_ sender: Any) {
+
+    let ingredientVC = IngredientViewController.instantiate()
+    ingredientVC.existingIngredients = ingredients
+    present(ingredientVC.navEmbedded, animated: true, completion: nil)
+  }
 }
 
 extension IngredientListViewController {

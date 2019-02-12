@@ -10,6 +10,7 @@ import UIKit
 
 class IngredientViewController: UIViewController {
 
+  var existingIngredients = [Ingredient]()
   var ingredient: Ingredient?
   var onIngredientAdded: ((Ingredient) -> Void)?
 
@@ -125,7 +126,10 @@ extension IngredientViewController {
 
   private func updateSaveButtonEnabled() {
 
-    saveButton.isEnabled = !(nameTextField.text ?? "").isEmpty
+    let ingredientName = nameTextField.text ?? ""
+    let isValidIngredient = !existingIngredients.map { $0.name.lowercased() }
+      .contains(ingredientName.lowercased())
+    saveButton.isEnabled = !ingredientName.isEmpty && isValidIngredient
   }
 
   private func updateAmountSliderHidden() {

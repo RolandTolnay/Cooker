@@ -40,7 +40,7 @@ extension Ingredient: Equatable {
 
   static func == (lhs: Ingredient, rhs: Ingredient) -> Bool {
 
-    return lhs.name == rhs.name
+    return lhs.name.lowercased() == rhs.name.lowercased()
   }
 }
 
