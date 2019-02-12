@@ -112,4 +112,18 @@ extension Amount {
       self = .none
     }
   }
+
+  var abbreviation: String {
+
+    switch self {
+    case .piece:
+      return "pcs"
+    case .gramms:
+      return "g"
+    case .millilitres:
+      return "ml"
+    default:
+      return ""
+    }
+  }
 }

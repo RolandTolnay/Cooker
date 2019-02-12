@@ -14,19 +14,19 @@ class IngredientViewController: UIViewController {
 
   @IBOutlet private weak var nameTextField: UITextField!
   @IBOutlet private weak var amountTextField: UITextField!
-  @IBOutlet private weak var amountPickerView: UIPickerView!
+  @IBOutlet private weak var amountSlider: UISlider!
+  @IBOutlet private weak var amountSegmentedControl: UISegmentedControl!
+  @IBOutlet private weak var amountLabel: UILabel!
   @IBOutlet private weak var saveButton: UIBarButtonItem!
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    hideKeyboardWhenTappedArround()
-
-    setupPickerView()
+    setupTextFields()
+    amountSegmentedControl.selectedSegmentIndex = -1
+    amountLabel.text = amountSegmentedControl.measurementLabel
     ingredient.map { setup(withIngredient: $0) }
-    updatePickerViewHidden()
-    nameTextField.addPaddingLeft(10.0)
-    amountTextField.addPaddingLeft(10.0)
+    updateAmountSliderHidden()
 
     if !isPresentedModally {
       navigationItem.leftBarButtonItem = nil
@@ -57,27 +57,54 @@ class IngredientViewController: UIViewController {
 
   @IBAction private func onAmountChanged(_ sender: Any) {
 
-    updatePickerViewHidden()
     updateSaveButtonEnabled()
+    let amountValue = Float(amountTextField.text ?? "") ?? 0
+    amountSlider.value = amountValue / Float(amountSegmentedControl.multiplier)
+    if (amountTextField.text ?? "").isEmpty {
+      amountTextField.text = "0"
+    }
   }
 
-  @IBAction func onIngredientNameReturn(_ sender: Any) {
+  @IBAction private func onIngredientNameReturn(_ sender: Any) {
 
     amountTextField.becomeFirstResponder()
   }
 
-  @IBAction func onAmountReturn(_ sender: Any) {
+  @IBAction private func onAmountReturn(_ sender: Any) {
 
     saveIngredientAndDismiss()
+  }
+
+  @IBAction private func onAmountSliderValueChanged(_ sender: UISlider) {
+
+    let fixed = roundf(sender.value / 1) * 1
+    sender.setValue(fixed, animated: false)
+
+    amountTextField.text = "\(Int(sender.value) * amountSegmentedControl.multiplier)"
+    updateSaveButtonEnabled()
+  }
+
+  @IBAction private func onAmountSegmentedControlValueChanged(_ sender: Any) {
+
+    updateSaveButtonEnabled()
+    amountLabel.text = amountSegmentedControl.measurementLabel
+    updateAmountSliderHidden()
+  }
+
+  @IBAction private func onAmountEditingBegin(_ sender: Any) {
+
+    amountTextField.selectAll(sender)
   }
 }
 
 extension IngredientViewController {
 
-  private func setupPickerView() {
+  private func setupTextFields() {
 
-    amountPickerView.dataSource = self
-    amountPickerView.delegate = self
+    hideKeyboardWhenTappedArround()
+
+    nameTextField.addPaddingLeft(10.0)
+    amountTextField.addPaddingLeft(10.0)
   }
 
   private func setup(withIngredient ingredient: Ingredient) {
@@ -89,18 +116,23 @@ extension IngredientViewController {
 
     amountTextField.text = "\(amountValue)"
     if let selectedRow = Amount.selectableCases.firstIndex(of: ingredient.amount) {
-      amountPickerView.selectRow(selectedRow, inComponent: 0, animated: false)
+      amountSegmentedControl.selectedSegmentIndex = selectedRow
+      amountLabel.text = amountSegmentedControl.measurementLabel
     }
-  }
-
-  private func updatePickerViewHidden() {
-
-    amountPickerView.isHidden = (amountTextField.text ?? "").isEmpty
+    amountSlider.value = Float(amountValue) / Float(amountSegmentedControl.multiplier)
   }
 
   private func updateSaveButtonEnabled() {
 
     saveButton.isEnabled = !(nameTextField.text ?? "").isEmpty
+  }
+
+  private func updateAmountSliderHidden() {
+
+    let isHidden = amountSegmentedControl.selectedSegmentIndex == -1
+    amountSlider.isHidden = isHidden
+    amountLabel.isHidden = isHidden
+    amountTextField.isHidden = isHidden
   }
 
   private func saveIngredientAndDismiss() {
@@ -110,8 +142,8 @@ extension IngredientViewController {
       else { return }
 
     var amount = Amount.none
-    if let amountValue = Int(amountTextField.text ?? "") {
-      amount = Amount.selectableCases[amountPickerView.selectedRow(inComponent: 0)]
+    if let amountValue = Int(amountTextField.text ?? ""), amountValue > 0 {
+      amount = Amount.selectableCases[amountSegmentedControl.selectedSegmentIndex]
       amount.value = amountValue
     }
 
@@ -132,28 +164,32 @@ extension IngredientViewController {
   }
 }
 
-extension IngredientViewController: UIPickerViewDataSource {
+extension UISegmentedControl {
 
-  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+  fileprivate var multiplier: Int {
 
-    return 1
+    return selectedSegmentIndex == 0 ? 1 : 50
   }
 
-  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+  fileprivate var measurementLabel: String {
 
-    return Amount.selectableCases.count
-  }
-
-  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-
-    return Amount.selectableCases[row].title
+    return Amount(index: selectedSegmentIndex).abbreviation
   }
 }
 
-extension IngredientViewController: UIPickerViewDelegate {
+extension Amount {
 
-  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+  fileprivate init(index: Int) {
 
-    updateSaveButtonEnabled()
+    switch index {
+    case 0:
+      self = .piece(amount: 0)
+    case 1:
+      self = .gramms(amount: 0)
+    case 2:
+      self = .millilitres(amount: 0)
+    default:
+      self = .none
+    }
   }
 }

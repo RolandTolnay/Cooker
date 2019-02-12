@@ -40,7 +40,9 @@ class RecipeViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
-    nameTextField.becomeFirstResponder()
+    if (nameTextField.text ?? "").isEmpty {
+      nameTextField.becomeFirstResponder()
+    }
     Service.db?.ingredients(completion: { (ingredients, error) in
 
       if let error = error {
