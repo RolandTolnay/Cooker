@@ -57,9 +57,9 @@ class RecipeViewController: UIViewController {
     Service.db?.save(recipe: recipe, completion: { (error) in
 
       if let error = error {
-        print("Unable to save recipe with error: \(error.localizedDescription)")
+        log.error("Unable to save recipe with error: \(error.localizedDescription)")
       } else {
-        print("Succesfully saved recipe: \(recipe)")
+        log.debug("Succesfully saved recipe: \(recipe)")
       }
     })
 
@@ -141,7 +141,7 @@ extension RecipeViewController {
     Service.db?.ingredients(completion: { (ingredients, error) in
 
       if let error = error {
-        print("Error fetching ingredients from DB: \(error.localizedDescription)")
+        log.error("Error fetching ingredients from DB: \(error.localizedDescription)")
       }
       self.ingredients.append(contentsOf:
         ingredients

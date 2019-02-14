@@ -12,5 +12,6 @@ target 'Cooker' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'SwiftyBeaver'
 
 end

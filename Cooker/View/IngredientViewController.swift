@@ -178,9 +178,9 @@ extension IngredientViewController {
     Service.db?.save(ingredient: ingredient, completion: { (error) in
       
       if let error = error {
-        print("Unable to save ingredient with error: \(error.localizedDescription)")
+        log.error("Unable to save ingredient with error: \(error.localizedDescription)")
       } else {
-        print("Succesfully saved ingredient: \(ingredient)")
+        log.debug("Succesfully saved ingredient: \(ingredient)")
       }
     })
     onIngredientAdded?(ingredient)

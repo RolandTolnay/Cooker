@@ -56,7 +56,7 @@ extension IngredientListViewController {
     Service.db?.ingredients(completion: { (ingredients, error) in
 
       if let error = error {
-        print("Error fetching ingredients from DB: \(error.localizedDescription)")
+        log.error("Error fetching ingredients from DB: \(error.localizedDescription)")
       }
       self.ingredients = ingredients
     })
@@ -123,9 +123,9 @@ extension IngredientListViewController: UITableViewDelegate {
       Service.db?.delete(ingredient: ingredient, completion: { (error) in
 
         if let error = error {
-          print("Failed deleting \(ingredient) with error: \(error.localizedDescription)")
+          log.error("Failed deleting \(ingredient) with error: \(error.localizedDescription)")
         } else {
-          print("Succesfully deleted \(ingredient).")
+          log.debug("Succesfully deleted \(ingredient).")
         }
       })
       ingredients = ingredients.filter { $0.id != ingredient.id }

@@ -37,14 +37,14 @@ class RecipeListViewController: UIViewController {
     Service.db?.recipes(completion: { (recipes, error) in
 
       if let error = error {
-        print("Error fetching recipes from DB: \(error.localizedDescription)")
+        log.error("Error fetching recipes from DB: \(error.localizedDescription)")
       }
       self.recipes = recipes
     })
     Service.db?.ingredients(completion: { (ingredients, error) in
 
       if let error = error {
-        print("Error fetching ingredients from DB: \(error.localizedDescription)")
+        log.error("Error fetching ingredients from DB: \(error.localizedDescription)")
       }
       self.ingredientStock = ingredients
     })
@@ -64,21 +64,21 @@ extension RecipeListViewController {
         db.recipes(completion: { (recipes, error) in
 
           if let error = error {
-            print("Error fetching recipes from DB: \(error.localizedDescription)")
+            log.error("Error fetching recipes from DB: \(error.localizedDescription)")
           }
           self.recipes = recipes
         })
         db.ingredients(completion: { (ingredients, error) in
 
           if let error = error {
-            print("Error fetching ingredients from DB: \(error.localizedDescription)")
+            log.error("Error fetching ingredients from DB: \(error.localizedDescription)")
           }
           self.ingredientStock = ingredients
         })
 
-        print("Succesfully signed in with Firebase.")
+        log.info("Succesfully signed in with Firebase.")
       } else {
-        print("Unable to sign in with Firebase: \(error?.localizedDescription ?? "unknown error")")
+        log.error("Unable to sign in with Firebase: \(error?.localizedDescription ?? "unknown error")")
       }
     }
   }
@@ -138,9 +138,9 @@ extension RecipeListViewController: UITableViewDelegate {
       Service.db?.delete(recipe: recipe, completion: { (error) in
 
         if let error = error {
-          print("Failed deleting \(recipe) with error: \(error.localizedDescription)")
+          log.error("Failed deleting \(recipe) with error: \(error.localizedDescription)")
         } else {
-          print("Succesfully deleted \(recipe).")
+          log.debug("Succesfully deleted \(recipe).")
         }
       })
       recipes = recipes.filter { $0.id != recipe.id }
